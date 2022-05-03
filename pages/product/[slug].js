@@ -132,7 +132,7 @@ const ProductScreen = () => {
               </ListItem>
               <ListItem>
                 <Button
-                  onClick={(addToCartHandler) => {}}
+                  onClick={() => {}}
                   fullWidth
                   variant="contained"
                   color="secondary"

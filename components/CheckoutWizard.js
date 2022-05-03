@@ -24,4 +24,9 @@ const CheckoutWizard = ({ activeStep = 0 }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(CheckoutWizard), { ssr: false });
+export default dynamic(
+  () => new Promise((resolve) => resolve(CheckoutWizard)),
+  {
+    ssr: false,
+  }
+);

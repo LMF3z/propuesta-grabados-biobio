@@ -1,9 +1,9 @@
 import { useEffect, useContext } from 'react';
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import {
   Button,
-  Link,
+  // Link,
   List,
   ListItem,
   TextField,
@@ -18,7 +18,7 @@ import CheckoutWizard from '../components/CheckoutWizard';
 
 const Shipping = () => {
   const router = useRouter();
-  const { redirect } = router.query;
+  // const { redirect } = router.query;
 
   const {
     handleSubmit,

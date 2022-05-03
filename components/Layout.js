@@ -197,4 +197,6 @@ const Layout = ({
   );
 };
 
-export default dynamic(() => Promise.resolve(Layout), { ssr: false });
+export default dynamic(() => new Promise((resolve) => resolve(Layout)), {
+  ssr: false,
+});

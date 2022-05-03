@@ -1,7 +1,7 @@
 // import { useEffect } from 'react';
 import Image from 'next/image';
 // import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import {
   // Link,
   Button,
@@ -18,7 +18,7 @@ import images from '../public/images';
 import useStyles from '../utils/styles';
 
 const Cotizar = () => {
-  const router = useRouter();
+  // const router = useRouter();
   // const { redirect } = router.query;
 
   const {
@@ -32,7 +32,7 @@ const Cotizar = () => {
 
   const classes = useStyles();
 
-  const handleRegister = async (data) => {
+  const handleRegister = async () => {
     closeSnackbar();
     enqueueSnackbar('Cotización enviada exitosamente.', { variant: 'success' });
     reset();

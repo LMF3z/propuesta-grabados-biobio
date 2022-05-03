@@ -177,4 +177,6 @@ const CardScreen = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(CardScreen), { ssr: false });
+export default dynamic(() => new Promise((resolve) => resolve(CardScreen)), {
+  ssr: false,
+});

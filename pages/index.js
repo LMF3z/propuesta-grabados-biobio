@@ -134,7 +134,7 @@ const Home = ({ products }) => {
 
 export default Home;
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async () => {
   // await db.connect();
   // const products = await ProductModel.find({}).lean();
   // await db.disconnect();
