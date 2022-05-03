@@ -1,0 +1,7 @@
+const types = {
+  USER_LOGIN: 'USER_LOGIN',
+  USER_LOGOUT: 'USER_LOGOUT',
+  SAVE_SHIPPING_ADDRESS: 'SAVE_SHIPPING_ADDRESS',
+};
+
+export default types;
