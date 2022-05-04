@@ -1,4 +1,4 @@
-// import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import dynamic from 'next/dynamic';
@@ -12,21 +12,22 @@ import {
   Container,
   Link,
   // Switch,
-  // Badge,
-  // Button,
+  Badge,
   // Menu,
   // MenuItem,
   // responsive appbar
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CacheProvider } from '@emotion/react';
 import createEmotionCache from '../lib/createEmotionCache';
 import DrawerComponent from '../components/Drawer';
 import useBaseTheme from '../lib/baseTheme';
 import useStyles from '../utils/styles';
-// import { StoreContext } from '../store/store';
+import { StoreContext } from '../store/store';
 // import userTypes from '../store/user.types';
+
 import Footer from './Footer';
 
 const clientSideEmotionCache = createEmotionCache();
@@ -42,10 +43,8 @@ const Layout = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  // const router = useRouter();
-
-  // const { state, dispatch } = useContext(StoreContext);
-  // const { darkMode, cart, userInfo } = state;
+  const { state } = useContext(StoreContext);
+  const { cart } = state;
 
   // const [anchorEl, setAnchorEl] = useState(null);
 
@@ -84,35 +83,31 @@ const Layout = ({
                     </Link>
                   </NextLink>
                   <div className={classes.grow}></div>
-                  <div className="">
+                  <div className="" style={{ marginRight: 10 }}>
                     <NextLink href="/cotizar" passHref>
                       <Link>
-                        Cotizar
-                        {/* <Button
-                      variant="outlined"
-                      color="secondary"
-                      // startIcon={<FaShoppingCart />}
-                    >
-                      Cotizar
-                    </Button> */}
+                        <Badge
+                          color="secondary"
+                          badgeContent={cart.cartItems.length}
+                        >
+                          Cotizar &nbsp;
+                          <ShoppingCartIcon />
+                        </Badge>
                       </Link>
                     </NextLink>
-                    {/*
-                    <NextLink href="/cart" passHref>
+                    {/* <NextLink href="/cart" passHref>
                       <Link>
-                        {cart.cartItems.length > 0 ? (
-                          <Badge
-                            color="secondary"
-                            badgeContent={cart.cartItems.length}
-                          >
-                            Cart
+                        {1 > 0 ? (
+                          <Badge color="secondary" badgeContent={10}>
+                            <ShoppingCartIcon />
+                            Cotizar
                             {/* <Button
-                          variant="outlined"
-                          color="secondary"
-                          startIcon={<FaShoppingCart />}
-                        >
-                          Cart
-                        </Button> 
+                              variant="outlined"
+                              color="secondary"
+                              startIcon={<ShoppingCartIcon />}
+                            >
+                              Cart
+                            </Button>
                           </Badge>
                         ) : (
                           <span>Cart</span>
@@ -123,10 +118,11 @@ const Layout = ({
                           // >
                           //   Cart
                           // </Button>
-                          )}
-                          </Link>
-                          </NextLink>
-                      */}
+                        )}
+                      </Link>
+                    </NextLink> */}
+                  </div>
+                  <div className="">
                     <NextLink href="/about" passHref>
                       <Link>Quienes somos</Link>
                     </NextLink>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import NextLink from 'next/link';
 import {
   Grid,
@@ -10,20 +10,24 @@ import {
   CardActions,
   TextField,
   Box,
-  // Button,
+  Button,
 } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 // import axios from 'axios';
-// import productTypes from '../store/products.types';
+import productTypes from '../store/products.types';
 // import db from '../config/connectiondb';
 // import ProductModel from '../models/Product';
 import Layout from '../components/Layout';
-// import { StoreContext } from '../store/store';
+import { StoreContext } from '../store/store';
 import data from '../utils/data';
+import { useSnackbar } from 'notistack';
 
 const Home = ({ products }) => {
-  // const { state, dispatch } = useContext(StoreContext);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const { state, dispatch } = useContext(StoreContext);
   const [dataProduct, setDataProduct] = useState([]);
 
   useEffect(() => {
@@ -48,6 +52,28 @@ const Home = ({ products }) => {
   //     payload: { ...data, quantity },
   //   });
   // };
+
+  const addToCotizadorHandler = (product) => {
+    closeSnackbar();
+    const data = {};
+    const existItem = state.cart.cartItems.find(
+      (prod) => prod.slug === product.slug
+    );
+
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+
+    data = existItem ? { ...existItem } : { ...product };
+    data.quantity = quantity;
+
+    dispatch({
+      type: productTypes.CART_ADD_ITEM,
+      payload: data,
+    });
+
+    enqueueSnackbar(`Agregado(s) exitosamente ${quantity} artículos.`, {
+      variant: 'success',
+    });
+  };
 
   // FaPhoneAlt
 
@@ -110,6 +136,18 @@ const Home = ({ products }) => {
                       Precio:{' '}
                       <span style={{ color: '#9cc426' }}>${product.price}</span>
                     </Typography>
+                    <Button
+                      style={{
+                        marginLeft: 10,
+                      }}
+                      variant="contained"
+                      size="small"
+                      color="secondary"
+                      onClick={() => addToCotizadorHandler(product)}
+                      endIcon={<ShoppingCartIcon />}
+                    >
+                      Agregar
+                    </Button>
                     {/* <Button
                     style={{
                       marginLeft: 10,

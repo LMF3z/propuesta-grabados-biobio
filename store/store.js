@@ -8,13 +8,21 @@ export const StoreContext = createContext();
 
 const INITIAL_STATE = {
   darkMode: Cookies.get('darkMode') === 'ON' ? true : false,
+  // cart: {
+  //   cartItems: Cookies.get('cartItem')
+  //     ? JSON.parse(Cookies.get('cartItem'))
+  //     : [],
+  //   shippingAddress: Cookies.get('shippingAddress')
+  //     ? JSON.parse(Cookies.get('shippingAddress'))
+  //     : {},
+  // },
   cart: {
     cartItems: Cookies.get('cartItem')
       ? JSON.parse(Cookies.get('cartItem'))
       : [],
-    shippingAddress: Cookies.get('shippingAddress')
-      ? JSON.parse(Cookies.get('shippingAddress'))
-      : {},
+    // shippingAddress: Cookies.get('shippingAddress')
+    //   ? JSON.parse(Cookies.get('shippingAddress'))
+    //   : {},
   },
   userInfo: Cookies.get('user_info')
     ? JSON.parse(Cookies.get('user_info'))
@@ -35,7 +43,7 @@ const reducer = (state, { type, payload }) => {
     case productsTypes.CART_ADD_ITEM: {
       const newItem = payload;
       const existItem = state.cart.cartItems.find(
-        (item) => item._id === newItem._id
+        (item) => item.slug === newItem.slug
       );
 
       const cartItems = existItem
@@ -54,7 +62,7 @@ const reducer = (state, { type, payload }) => {
 
     case productsTypes.CART_REMOVE_ITEM: {
       const cartItems = state.cart.cartItems.filter(
-        (item) => item._id !== payload._id
+        (item) => item.slug !== payload.slug
       );
 
       Cookies.set('cartItem', JSON.stringify(cartItems));

@@ -1,7 +1,7 @@
 // import { useEffect } from 'react';
 import Image from 'next/image';
 // import NextLink from 'next/link';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import {
   // Link,
   Button,
@@ -10,6 +10,8 @@ import {
   ListItem,
   Typography,
   TextField,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
@@ -18,8 +20,11 @@ import images from '../public/images';
 import useStyles from '../utils/styles';
 
 const Cotizar = () => {
-  // const router = useRouter();
+  const router = useRouter();
   // const { redirect } = router.query;
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const {
     handleSubmit,
@@ -72,9 +77,27 @@ const Cotizar = () => {
               onSubmit={handleSubmit(handleRegister)}
               className={classes.form}
             >
-              <Typography component="h1" variant="h1">
-                Cotizar
-              </Typography>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: isMobile ? 'column' : 'row',
+                  minHeight: '50px',
+                  height: isMobile ? 'auto' : '50px',
+                  paddingTop: isMobile ? '0' : 10,
+                  width: '100%',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Typography component="h1" variant="h1">
+                  Cotizar tu pedido
+                </Typography>
+                <Button
+                  variant="contained"
+                  onClick={() => router.push('/cart-custom')}
+                >
+                  <Typography>Ver Artículos</Typography>
+                </Button>
+              </div>
               <p style={{ color: 'red' }}>* requerido.</p>
               <List>
                 <ListItem>

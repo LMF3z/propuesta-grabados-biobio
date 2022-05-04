@@ -1,4 +1,4 @@
-// import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import NextLink from 'next/link';
 import Image from 'next/image';
 // import axios from 'axios';
@@ -11,17 +11,21 @@ import {
   Card,
   Button,
 } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import data from '../../utils/data';
 import Layout from '../../components/Layout';
 import useStyles from '../../utils/styles';
 // import db from '../../config/connectiondb';
 // import ProductModel from '../../models/Product';
-// import productTypes from '../../store/products.types';
-// import { StoreContext } from '../../store/store';
+import productTypes from '../../store/products.types';
+import { StoreContext } from '../../store/store';
 import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
 
 const ProductScreen = () => {
-  // const { state, dispatch } = useContext(StoreContext);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const { state, dispatch } = useContext(StoreContext);
   const router = useRouter();
   const classes = useStyles();
   // const [product, setProduct] = useState({});
@@ -54,6 +58,28 @@ const ProductScreen = () => {
 
   //   router.push('/cart');
   // };
+
+  const addToCotizadorHandler = (produc) => {
+    closeSnackbar();
+    const data = {};
+    const existItem = state.cart.cartItems.find(
+      (prod) => prod.slug === product.slug
+    );
+
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+
+    data = existItem ? { ...existItem } : { ...product };
+    data.quantity = quantity;
+
+    dispatch({
+      type: productTypes.CART_ADD_ITEM,
+      payload: data,
+    });
+
+    enqueueSnackbar(`Agregado(s) exitosamente ${quantity} artículos.`, {
+      variant: 'success',
+    });
+  };
 
   return (
     <Layout title={product.name} description={product.tags}>
@@ -133,10 +159,11 @@ const ProductScreen = () => {
               </ListItem>
               <ListItem>
                 <Button
-                  onClick={() => {}}
+                  onClick={() => addToCotizadorHandler(product)}
                   fullWidth
                   variant="contained"
                   color="secondary"
+                  endIcon={<ShoppingCartIcon />}
                 >
                   {/* Add to cart */}
                   Agregar al carrito

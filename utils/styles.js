@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     justifyContent: 'between',
   },
   main: {
-    minHeight: '80vh',
+    minHeight: '50vh',
     // backgroundColor: '#181565',
     // height: '80vh',
   },
@@ -60,6 +60,13 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
+  },
+  title_box: {
+    display: 'flex',
+    height: '50px',
+    justifyContent: 'space-between',
+    // border: 'solid red 1px',
+    // font: '1.5rem',
   },
 });
 
