@@ -107,7 +107,8 @@ const ProductScreen = () => {
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Price:</Typography>
+                    {/* <Typography>Price:</Typography> */}
+                    <Typography>Precio:</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography>${product.price}</Typography>
