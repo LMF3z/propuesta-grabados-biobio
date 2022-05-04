@@ -152,7 +152,7 @@ const Cotizar = () => {
                         fullWidth
                         id="phone"
                         label="Número de teléfono"
-                        inputProps={{ type: 'text' }}
+                        inputProps={{ type: 'number' }}
                         error={Boolean(errors.phone)}
                         helperText={
                           errors.phone
