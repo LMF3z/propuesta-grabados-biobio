@@ -21,12 +21,17 @@ import {
   Card,
   List,
   ListItem,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import Layout from '../components/Layout';
 import productTypes from '../store/products.types';
 import images from '../public/images';
 
 const CardScreen = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const router = useRouter();
 
   const { state, dispatch } = useContext(StoreContext);
@@ -45,16 +50,19 @@ const CardScreen = () => {
     dispatch({ type: productTypes.CART_REMOVE_ITEM, payload: item });
   };
 
-  const HandlerCheckOut = () => router.push('/shipping');
+  //const HandlerCheckOut = () => router.push('/shipping');
 
   return (
     <Layout title="Shooping cart">
       <Typography component="h1" variant="h1">
         Carrito
       </Typography>
-      <NextLink href="/cotizar" passHref>
+      <Button onClick={() => router.back()} variant="contained">
+        Regresar
+      </Button>
+      {/* <NextLink href="/cotizar" passHref>
         <Link color={state.darkMode ? 'secondary' : 'primary'}> Regresar</Link>
-      </NextLink>
+      </NextLink> */}
       {cartItems.length === 0 ? (
         <>
           <div className="">Carrito vacío.</div>
@@ -68,7 +76,12 @@ const CardScreen = () => {
               alignItems="center"
               justifyContent="center"
             >
-              <Image src={images.emptyCart} alt="img-empty-cart" />
+              <Image
+                src={images.emptyCart}
+                alt="img-empty-cart"
+                width={300}
+                height={300}
+              />
             </Grid>
           </Grid>
         </>
@@ -88,7 +101,7 @@ const CardScreen = () => {
                 </TableHead>
                 <TableBody>
                   {cartItems.map((item) => (
-                    <TableRow key={item._id}>
+                    <TableRow key={item.slug}>
                       <TableCell>
                         <NextLink href={`/product/${item.slug}`} passHref>
                           <Link>

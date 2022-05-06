@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     justifyContent: 'between',
   },
   main: {
-    minHeight: '50vh',
+    minHeight: '60vh',
     // backgroundColor: '#181565',
     // height: '80vh',
   },
@@ -44,7 +44,7 @@ const useStyles = makeStyles({
     margin: '0 auto',
   },
   footer: {
-    marginTop: 20,
+    marginTop: 25,
     textAlign: 'center',
     paddingLeft: 20,
     paddingRight: 20,
