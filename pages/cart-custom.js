@@ -65,7 +65,7 @@ const CardScreen = () => {
       </NextLink> */}
       {cartItems.length === 0 ? (
         <>
-          <div className="">Carrito vacío.</div>
+          <div style={{ marginTop: 10 }}>Carrito vacío.</div>
           <Grid container>
             <Grid
               item
