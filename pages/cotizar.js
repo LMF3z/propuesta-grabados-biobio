@@ -95,7 +95,7 @@ const Cotizar = () => {
                   variant="contained"
                   onClick={() => router.push('/cart-custom')}
                 >
-                  <Typography>Ver Artículos</Typography>
+                  <Typography>Ver Carrito</Typography>
                 </Button>
               </div>
               <p style={{ color: 'red' }}>* requerido.</p>

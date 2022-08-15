@@ -50,19 +50,6 @@ const DrawerComponent = () => {
           </ListItemButton>
 
           <ListItemButton
-            selected={pathname === '/about' ? true : false}
-            onClick={() => setOpenDrawer(false)}
-          >
-            <ListItemIcon>
-              <ListItemText>
-                <NextLink href="/about" passHref>
-                  <Link>Quienes somos</Link>
-                </NextLink>
-              </ListItemText>
-            </ListItemIcon>
-          </ListItemButton>
-
-          <ListItemButton
             selected={pathname === '/cart-custom' ? true : false}
             onClick={() => setOpenDrawer(false)}
           >
@@ -70,6 +57,19 @@ const DrawerComponent = () => {
               <ListItemText>
                 <NextLink href="/cart-custom" passHref>
                   <Link>Carrito</Link>
+                </NextLink>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
+
+          <ListItemButton
+            selected={pathname === '/about' ? true : false}
+            onClick={() => setOpenDrawer(false)}
+          >
+            <ListItemIcon>
+              <ListItemText>
+                <NextLink href="/about" passHref>
+                  <Link>Quienes somos</Link>
                 </NextLink>
               </ListItemText>
             </ListItemIcon>

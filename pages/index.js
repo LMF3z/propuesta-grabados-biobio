@@ -124,7 +124,7 @@ const Home = ({ products }) => {
                         image={product.image}
                         alt={product.name}
                         title={product.name}
-                        height="194"
+                        // height="194"
                       />
                       <CardContent>
                         <Typography>{product.name}</Typography>
